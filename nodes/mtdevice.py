@@ -1108,7 +1108,7 @@ class MTDevice(object):
 ################################################################
 def find_devices(timeout=0.002, verbose=False):
     mtdev_list = []
-    for port in glob.glob("/dev/tty*S*"):
+    for port in glob.glob("/dev/ttyXSENS*"):
         if verbose:
             print "Trying '%s'" % port
         try:
