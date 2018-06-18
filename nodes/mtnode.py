@@ -123,7 +123,7 @@ class XSensDriver(object):
         self.old_bGPS = 256  # publish GPS only if new
 
         # publish a string version of all data; to be parsed by clients
-        self.str_pub = rospy.Publisher('imu_data_str', String, queue_size=10)
+        self.str_pub = rospy.Publisher('~imu_data_str', String, queue_size=10)
         self.last_delta_q_time = None
         self.delta_q_rate = None
 
@@ -225,7 +225,7 @@ class XSensDriver(object):
             # refs could be published simultaneously
             if self.time_ref_pub is None:
                 self.time_ref_pub = rospy.Publisher(
-                    'time_reference', TimeReference, queue_size=10)
+                    '~time_reference', TimeReference, queue_size=10)
             time_ref_msg = TimeReference()
             time_ref_msg.header = self.h
             time_ref_msg.time_ref.secs = secs
@@ -714,57 +714,57 @@ class XSensDriver(object):
         if self.pub_imu:
             self.imu_msg.header = self.h
             if self.imu_pub is None:
-                self.imu_pub = rospy.Publisher('imu/data', Imu, queue_size=10)
+                self.imu_pub = rospy.Publisher('~data', Imu, queue_size=10)
             self.imu_pub.publish(self.imu_msg)
         if self.pub_gps:
             self.gps_msg.header = self.h
             if self.gps_pub is None:
-                self.gps_pub = rospy.Publisher('fix', NavSatFix, queue_size=10)
+                self.gps_pub = rospy.Publisher('~fix', NavSatFix, queue_size=10)
             self.gps_pub.publish(self.gps_msg)
         if self.pub_vel:
             self.vel_msg.header = self.h
             if self.vel_pub is None:
-                self.vel_pub = rospy.Publisher('velocity', TwistStamped,
+                self.vel_pub = rospy.Publisher('~velocity', TwistStamped,
                                                queue_size=10)
             self.vel_pub.publish(self.vel_msg)
         if self.pub_mag:
             self.mag_msg.header = self.h
             if self.mag_pub is None:
-                self.mag_pub = rospy.Publisher('imu/mag', MagneticField,
+                self.mag_pub = rospy.Publisher('~mag', MagneticField,
                                                queue_size=10)
             self.mag_pub.publish(self.mag_msg)
         if self.pub_temp:
             self.temp_msg.header = self.h
             if self.temp_pub is None:
-                self.temp_pub = rospy.Publisher('temperature', Temperature,
+                self.temp_pub = rospy.Publisher('~temperature', Temperature,
                                                 queue_size=10)
             self.temp_pub.publish(self.temp_msg)
         if self.pub_press:
             self.press_msg.header = self.h
             if self.press_pub is None:
-                self.press_pub = rospy.Publisher('pressure', FluidPressure,
+                self.press_pub = rospy.Publisher('~pressure', FluidPressure,
                                                  queue_size=10)
             self.press_pub.publish(self.press_msg)
         if self.pub_anin1:
             if self.analog_in1_pub is None:
-                self.analog_in1_pub = rospy.Publisher('analog_in1',
+                self.analog_in1_pub = rospy.Publisher('~analog_in1',
                                                       UInt16, queue_size=10)
             self.analog_in1_pub.publish(self.anin1_msg)
         if self.pub_anin2:
             if self.analog_in2_pub is None:
-                self.analog_in2_pub = rospy.Publisher('analog_in2', UInt16,
+                self.analog_in2_pub = rospy.Publisher('~analog_in2', UInt16,
                                                       queue_size=10)
             self.analog_in2_pub.publish(self.anin2_msg)
         if self.pub_ecef:
             self.ecef_msg.header = self.h
             if self.ecef_pub is None:
-                self.ecef_pub = rospy.Publisher('ecef', PointStamped,
+                self.ecef_pub = rospy.Publisher('~ecef', PointStamped,
                                                 queue_size=10)
             self.ecef_pub.publish(self.ecef_msg)
         if self.pub_diag:
             self.diag_msg.header = self.h
             if self.diag_pub is None:
-                self.diag_pub = rospy.Publisher('/diagnostics', DiagnosticArray,
+                self.diag_pub = rospy.Publisher('~diagnostics', DiagnosticArray,
                                                 queue_size=10)
             self.diag_pub.publish(self.diag_msg)
         # publish string representation
